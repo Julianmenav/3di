@@ -4,6 +4,8 @@ import { Canvas } from "@react-three/fiber";
 import FPV from "./components/FPV";
 import Ground from "./components/Ground";
 import Player from "./components/Player";
+import Cubodi from "./components/Cubodi"
+import Dino from "./components/Dino";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Physics>
           <Player />
           <Ground />
+          <Cubodi />
+          <Dino />
         </Physics>
       </Canvas>
       <div className="absolute centered cursor">💩</div>
