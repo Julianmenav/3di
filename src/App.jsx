@@ -6,6 +6,7 @@ import Ground from "./components/Ground";
 import Player from "./components/Player";
 import Cubodi from "./components/Cubodi"
 import Dino from "./components/Dino";
+import { Cubes } from "./components/Cubes";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Physics>
           <Player />
           <Ground />
+          <Cubes />
           <Cubodi />
           <Dino />
         </Physics>
