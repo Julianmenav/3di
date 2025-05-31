@@ -42,7 +42,7 @@ function App() {
           <Wall position={[-2, 0.5, -5]} texture={stoneTexture} />
         </Physics>
       </Canvas>
-      <div className="absolute centered cursor">+</div>
+      {gameStarted && <div className="absolute centered cursor">+</div>}
     </>
   );
 }
