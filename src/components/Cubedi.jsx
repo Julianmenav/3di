@@ -2,7 +2,7 @@ import { useGLTF } from "@react-three/drei";
 import { useBox } from "@react-three/cannon";
 
 export default function Cubedi({ position = [0, 0, 0], rotation = [0, 0, 0], ...props }) {
-  const { nodes, materials } = useGLTF("/react-threejs/Cubedi.glb");
+  const { nodes, materials } = useGLTF("/3di/Cubedi.glb");
   const [ref] = useBox(() => ({
     type: "Static",
     position,
@@ -15,4 +15,4 @@ export default function Cubedi({ position = [0, 0, 0], rotation = [0, 0, 0], ...
   );
 }
 
-useGLTF.preload("/react-threejs/Cubedi.glb");
+useGLTF.preload("/3di/Cubedi.glb");
