@@ -5,7 +5,7 @@ import FPV from "./components/FPV";
 import Ground from "./components/Ground";
 import Player from "./components/Player";
 import Cubedi from "./components/Cubedi";
-import { woodTexture } from "./images/textures";
+import { stoneTexture, woodTexture } from "./images/textures";
 import { Wall } from "./components/Wall";
 import Start from "./pages/Start";
 import useStore from "./hooks/useStore";
@@ -33,13 +33,13 @@ function App() {
         }}
       >
         <Sky sunPosition={[0, -1, 0]} inclination={1} />
-        <ambientLight intensity={0.2} />
+        <ambientLight intensity={0.28} />
         {gameStarted && <FPV />}
         <Physics gravity={[0, -20, 0]} move>
           <Player />
           <Ground />
           <Cubedi position={[0, 1.5, -8]} />
-          <Wall position={[-2, 0.5, -5]} texture={woodTexture} />
+          <Wall position={[-2, 0.5, -5]} texture={stoneTexture} />
         </Physics>
       </Canvas>
       <div className="absolute centered cursor">+</div>

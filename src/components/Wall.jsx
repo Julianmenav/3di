@@ -24,7 +24,7 @@ export const Wall = ({ position = [0, 0, 0], width = 5, height = 3, texture }) =
       {/* Wall mesage */}
       <mesh position={[position[0] + width / 2 - 0.5, position[1] + height / 2 - 0.7, position[2] + 0.51]} rotation={[0, 0, Math.PI / 18]}>
         <planeGeometry args={[width / 1.3, height * 1.2]} />
-        <meshBasicMaterial map={wallMessageTexture} transparent={true} />
+        <meshBasicMaterial opacity={0.9} map={wallMessageTexture} transparent={true} />
       </mesh>
     </>
   );
