@@ -1,13 +1,13 @@
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef } from "react";
+import { useGLTF } from "@react-three/drei";
 
-export default function Cubodi(props) {
-  const { nodes, materials } = useGLTF('/react-threejs/Cubodi.glb')
+export default function Cubodi({ position = [0, 0, 0], rotation = [0, 0, 0], ...props }) {
+  const { nodes, materials } = useGLTF("/react-threejs/Cubodi.glb");
   return (
-    <group {...props} dispose={null} scale={1}  >
-      <mesh geometry={nodes.Cube.geometry} material={materials['Material.001']} position={[0.4, 4.8, -2.5]} rotation={[Math.PI / 3, 0, 0]}/>
+    <group {...props} dispose={null} scale={1}>
+      <mesh geometry={nodes.Cube.geometry} material={materials["Material.001"]} position={position} rotation={rotation} />
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/react-threejs/Cubodi.glb')
+useGLTF.preload("/react-threejs/Cubodi.glb");

@@ -5,6 +5,8 @@ import FPV from "./components/FPV";
 import Ground from "./components/Ground";
 import Player from "./components/Player";
 import Cubodi from "./components/Cubodi";
+import { woodTexture } from "./images/textures";
+import { Wall } from "./components/Wall";
 
 function App() {
   return (
@@ -16,7 +18,8 @@ function App() {
         <Physics>
           <Player />
           <Ground />
-          <Cubodi />
+          <Cubodi position={[0, 1.5, -8]} />
+          <Wall position={[-2, 0.5, -5]} texture={woodTexture} />
         </Physics>
       </Canvas>
       <div className="absolute centered cursor">+</div>
