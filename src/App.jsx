@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import FPV from "./components/FPV";
 import Ground from "./components/Ground";
 import Player from "./components/Player";
-import Cubodi from "./components/Cubodi";
+import Cubedi from "./components/Cubedi";
 import { woodTexture } from "./images/textures";
 import { Wall } from "./components/Wall";
 
@@ -18,7 +18,7 @@ function App() {
         <Physics>
           <Player />
           <Ground />
-          <Cubodi position={[0, 1.5, -8]} />
+          <Cubedi position={[0, 1.5, -8]} />
           <Wall position={[-2, 0.5, -5]} texture={woodTexture} />
         </Physics>
       </Canvas>
