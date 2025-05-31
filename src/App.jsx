@@ -32,8 +32,8 @@ function App() {
           canvasRef.current = gl.domElement;
         }}
       >
-        <Sky sunPosition={[100, 100, 20]} />
-        <ambientLight intensity={0.5} />
+        <Sky sunPosition={[0, -1, 0]} inclination={1} />
+        <ambientLight intensity={0.2} />
         {gameStarted && <FPV />}
         <Physics gravity={[0, -20, 0]} move>
           <Player />
