@@ -7,6 +7,7 @@ import Player from "./components/Player";
 import Cubedi from "./components/Cubedi";
 import { woodTexture } from "./images/textures";
 import { Wall } from "./components/Wall";
+import Cube from "./components/Cube";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Sky sunPosition={[100, 100, 20]} />
         <ambientLight intensity={0.5} />
         <FPV />
-        <Physics>
+        <Physics gravity={[0, -20, 0]}>
           <Player />
           <Ground />
           <Cubedi position={[0, 1.5, -8]} />
