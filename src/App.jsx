@@ -7,16 +7,35 @@ import Player from "./components/Player";
 import Cubedi from "./components/Cubedi";
 import { woodTexture } from "./images/textures";
 import { Wall } from "./components/Wall";
-import Cube from "./components/Cube";
+import Start from "./pages/Start";
+import useStore from "./hooks/useStore";
+import { useEffect, useRef } from "react";
 
 function App() {
+  const { gameStarted, startGame } = useStore();
+
+  const canvasRef = useRef();
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (gameStarted && canvasRef.current) {
+        canvasRef.current.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      }
+    }, 300);
+  }, [gameStarted]);
+
   return (
     <>
-      <Canvas>
+      {!gameStarted && <Start startGameFn={startGame} />}
+      <Canvas
+        onCreated={({ gl }) => {
+          canvasRef.current = gl.domElement;
+        }}
+      >
         <Sky sunPosition={[100, 100, 20]} />
         <ambientLight intensity={0.5} />
-        <FPV />
-        <Physics gravity={[0, -20, 0]}>
+        {gameStarted && <FPV />}
+        <Physics gravity={[0, -20, 0]} move>
           <Player />
           <Ground />
           <Cubedi position={[0, 1.5, -8]} />
