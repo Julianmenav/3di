@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import useStore from "./useStore";
 
 export const useAudio = () => {
-  const audio = new Audio("/sounds/stinger.mp3");
+  const audio = new Audio(`${import.meta.env.BASE_URL}sounds/stinger.mp3`);
   const { hasLookedBack } = useStore();
 
   useEffect(() => {
