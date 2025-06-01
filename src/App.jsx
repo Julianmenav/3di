@@ -38,7 +38,7 @@ function App() {
         <Physics gravity={[0, -20, 0]} move>
           <Player />
           <Ground />
-          <Cubedi position={[0, 1.5, -8]} />
+          <Cubedi position={[0, 1.5, 8]} />
           <Wall position={[-2, 0.5, -5]} texture={stoneTexture} />
         </Physics>
       </Canvas>
