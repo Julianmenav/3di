@@ -3,13 +3,14 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { Vector3 } from "three";
 import { useKeyboard } from "../hooks/useKeyboard";
+import useStore from "../hooks/useStore";
 
-const JUMP_POWER = 3;
+const JUMP_POWER = 4;
 const SPEED = 5;
 
 const Player = () => {
-  const { moveBackward, moveForward, moveLeft, jump, moveRight } =
-    useKeyboard();
+  const { moveBackward, moveForward, moveLeft, jump, moveRight } = useKeyboard();
+  const { gameStarted } = useStore();
 
   const { camera } = useThree();
   //Player "body"
@@ -31,32 +32,22 @@ const Player = () => {
 
   //Each frame move camera to player position and set movement(Velocity) according to key inputs.
   useFrame(() => {
-    
-    camera.position.copy(
-      new Vector3(pos.current[0], pos.current[1], pos.current[2])
-    );
+    camera.position.copy(new Vector3(pos.current[0], pos.current[1], pos.current[2]));
 
-    const direction = new Vector3();
+    if (gameStarted) {
+      const direction = new Vector3();
 
-    const frontVector = new Vector3(
-      0,
-      0,
-      (moveBackward ? 1 : 0) - (moveForward ? 1 : 0)
-    );
+      const frontVector = new Vector3(0, 0, (moveBackward ? 1 : 0) - (moveForward ? 1 : 0));
 
-    const sideVector = new Vector3((moveLeft ? 1 : 0) - (moveRight ? 1 : 0), 0, 0);
+      const sideVector = new Vector3((moveLeft ? 1 : 0) - (moveRight ? 1 : 0), 0, 0);
 
-    direction
-      .subVectors(frontVector, sideVector)
-      .normalize()
-      .multiplyScalar(SPEED)
-      .applyEuler(camera.rotation);
+      direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(SPEED).applyEuler(camera.rotation);
 
-    api.velocity.set(direction.x, vel.current[1], direction.z)
-    
+      api.velocity.set(direction.x, vel.current[1], direction.z);
 
-    if (jump && pos.current[1] <= 1) {
-      api.velocity.set(vel.current[0], JUMP_POWER, vel.current[2]);
+      if (jump && pos.current[1] <= 1) {
+        api.velocity.set(vel.current[0], JUMP_POWER, vel.current[2]);
+      }
     }
   });
 

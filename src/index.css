@@ -40,6 +40,8 @@ body, html {
 }
 
 .cursor {
-  color: #fff;
-  font-size: 18px;
+  color: #7e7e7e;
+  font-weight: 1000;
+  font-size: 28px;
 }
+

@@ -4,26 +4,46 @@ import { Canvas } from "@react-three/fiber";
 import FPV from "./components/FPV";
 import Ground from "./components/Ground";
 import Player from "./components/Player";
-import Cubodi from "./components/Cubodi"
-import Dino from "./components/Dino";
-import { Cubes } from "./components/Cubes";
+import Cubedi from "./components/Cubedi";
+import { stoneTexture, woodTexture } from "./images/textures";
+import { Wall } from "./components/Wall";
+import Start from "./pages/Start";
+import useStore from "./hooks/useStore";
+import { useEffect, useRef } from "react";
+import { useAudio } from "./hooks/useAudio";
 
 function App() {
+  const { gameStarted, startGame } = useStore();
+  useAudio();
+  const canvasRef = useRef();
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (gameStarted && canvasRef.current) {
+        canvasRef.current.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      }
+    }, 300);
+  }, [gameStarted]);
+
   return (
     <>
-      <Canvas>
-        <Sky sunPosition={[100, 100, 20]} />
-        <ambientLight intensity={0.5} />
-        <FPV />
-        <Physics>
+      {!gameStarted && <Start startGameFn={startGame} />}
+      <Canvas
+        onCreated={({ gl }) => {
+          canvasRef.current = gl.domElement;
+        }}
+      >
+        <Sky sunPosition={[0, -1, 0]} inclination={1} />
+        <ambientLight intensity={0.28} />
+        {gameStarted && <FPV />}
+        <Physics gravity={[0, -20, 0]} move>
           <Player />
           <Ground />
-          <Cubes />
-          <Cubodi />
-          <Dino />
+          <Cubedi position={[0, 1.5, 8]} />
+          <Wall position={[-2, 0.5, -5]} texture={stoneTexture} />
         </Physics>
       </Canvas>
-      <div className="absolute centered cursor">💩</div>
+      {gameStarted && <div className="absolute centered cursor">+</div>}
     </>
   );
 }
