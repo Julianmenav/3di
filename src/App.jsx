@@ -10,10 +10,11 @@ import { Wall } from "./components/Wall";
 import Start from "./pages/Start";
 import useStore from "./hooks/useStore";
 import { useEffect, useRef } from "react";
+import { useAudio } from "./hooks/useAudio";
 
 function App() {
   const { gameStarted, startGame } = useStore();
-
+  useAudio();
   const canvasRef = useRef();
 
   useEffect(() => {
